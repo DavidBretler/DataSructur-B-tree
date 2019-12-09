@@ -481,7 +481,7 @@ inline void BTree<T>::printBetween(BNode<T>* ptr, T min, T max)
 {
 	for (int i = 0; i < nkeys; i++)
 	{
-		if ((*(ptr->sun[i]))>min && (*(ptr->sun[i])) < max)
+		if ((*(ptr->sun[i]))>min && (*(ptr->sun[i])) < max  )
 			printBetween(ptr->sun[i]);
 	     	cout << (*ptr);
 	}
