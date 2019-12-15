@@ -6,13 +6,13 @@
 #include <list>
 #include <vector>
 #include <functional>
-//#include "BTRFull.cpp"
+#include "BTree.h"
 #include "Lending.h"
 
 using namespace std;
 
 //=============================================================
-void main()
+int main()
 {
 
 	char ch;
@@ -40,6 +40,10 @@ void main()
 			cout << "Enter lending data\n";
 			cin >> l1;
 			bt.insert(l1);
+			if(bt.search(bt.GetRoot(),l1))
+			{
+				cout << "ok";
+			}
 			break;
 
 		case '2':
@@ -56,11 +60,12 @@ void main()
 			str2 = str + '*'; //after date
 			l1.set_date(str1);
 			l2.set_date(str2);
-			bt.printBetween(l1, l2);
+		//	bt.printBetween(l1, l2);
 			break;
 		case '5':cout << "bye "; break;
 		default: cout << "error ";  break;
 		}//switch
 	} while (ch != '5');
 
+	return 0;
 }

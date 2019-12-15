@@ -151,9 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Lending.cpp" />
     <ClCompile Include="DataSructurTar3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Lending.h" />
     <ClInclude Include="BTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -443,6 +443,7 @@ class BTree
 {
 	BNode<T>* root;
 public:
+	BNode<T>* GetRoot() { return root; };
 	BTree() { root = NULL; } //build an empty tree
 	~BTree() { deleteTree(); }
 	void insert(T x);      //add a value to the tree
@@ -460,26 +461,24 @@ public:
 
 
 template <typename T>
-T* BTree<T>::search(BNode<T>* p, T x)
+T* BTree<T>::search(BNode<T>* ptr, T x)
 {
-	if (ptr == NULL)//if its a leaf stop runing
-		return;
-	for (int i = 0; i < nkeys; i++)
+	if (ptr == NULL)//if its a empty  pointer stop runing
+		return NULL;
+	for (int i = 0; i < ptr->nkeys; i++)
 	{
-		// if (ptr->sun[i] != NULL)
-		// {
-			if ((*(ptr->sun[i])) == x)//check if its equal to val
-				return ptr->sun[i];
+			if ((ptr->Son[i]) == x)//check if its equal to val
+				return ptr->Son[i];
 			else
-				search(ptr->sun[i],x);//call the func with the curent sun and the same val
-	//	 }
+				search(ptr->Son[i],x);//call the func with the curent son and the same val
+
 	}
 }
 
 template<typename T>
 inline void BTree<T>::printBetween(BNode<T>* ptr, T min, T max)
 {
-	for (int i = 0; i < nkeys; i++)
+	for (int i = 0; i < root->nkeys; i++)
 	{
 		if ((*(ptr->sun[i]))>min && (*(ptr->sun[i])) < max  )
 			printBetween(ptr->sun[i]);
@@ -494,7 +493,7 @@ void BTree<T>::printAllKeys(BNode<T>* ptr)//, std::function<bool(const T&)> pred
 {
 	if (ptr==NULL)		//if its a null stop runing
 			return ;	
-	for (int i = 0; i < nkeys; i++)
+	for (int i = 0; i < root->nkeys; i++)
 	{//run on all the sun each one recorcivly
 		//if(ptr->sun[i]!=NULL)
 		printAllKeys(ptr->sun[i]);
@@ -512,15 +511,15 @@ void BTree<T>::deleteSubTree(BNode<T>* t)
 
 
 template <typename T>
-void BTree<T>::printSubTree(BNode<T>* t)
+void BTree<T>::printSubTree(BNode<T>* ptr)
 {
 	if (ptr == NULL)		//if its a leaf stop runing
 		return;
-	for (int i = 0; i < nkeys; i++)
+	for (int i = 0; i < root->nkeys; i++)
 	{//run on all the sun each one recorcivly
 		//if (ptr->sun[i] != NULL)
-			printSubTree(ptr->sun[i]);
-		cout << (*ptr);
+			printSubTree(ptr->Son[i]);
+		cout << (*ptr->Key);
 	}
 
 }
